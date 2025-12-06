@@ -28,6 +28,7 @@ Route::middleware('guest')->group(function () {
     })->name('password.email');
 });
 
+// Authenticated Routes
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -57,6 +58,7 @@ Route::middleware('auth')->group(function () {
     })->name('donation.history');
 });
 
+// Admin Routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
         $totalCampaigns = \App\Models\Campaign::count();
@@ -80,12 +82,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('campaigns/{id}/reject', [\App\Http\Controllers\Admin\CampaignController::class, 'reject'])->name('campaigns.reject');
 });
 
+
+// Creator Routes
 Route::middleware(['auth', 'creator'])->prefix('creator')->name('creator.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('welcome', ['title' => 'Creator Dashboard']);
-    })->name('dashboard');
+    Route::get('/dashboard', [\App\Http\Controllers\Creator\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/campaigns', [\App\Http\Controllers\Creator\CampaignController::class, 'index'])->name('campaigns.index');
 });
 
+// Backer Routes
 Route::middleware(['auth', 'backer'])->prefix('backer')->name('backer.')->group(function () {
     Route::get('/dashboard', function () {
         return view('welcome', ['title' => 'Backer Dashboard']);
