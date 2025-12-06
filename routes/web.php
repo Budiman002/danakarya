@@ -82,11 +82,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('campaigns/{id}/reject', [\App\Http\Controllers\Admin\CampaignController::class, 'reject'])->name('campaigns.reject');
 });
 
-
 // Creator Routes
 Route::middleware(['auth', 'creator'])->prefix('creator')->name('creator.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Creator\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/campaigns', [\App\Http\Controllers\Creator\CampaignController::class, 'index'])->name('campaigns.index');
+    Route::get('/campaigns/create', [\App\Http\Controllers\Creator\CampaignController::class, 'create'])->name('campaigns.create');
+    Route::post('/campaigns', [\App\Http\Controllers\Creator\CampaignController::class, 'store'])->name('campaigns.store');
 });
 
 // Backer Routes

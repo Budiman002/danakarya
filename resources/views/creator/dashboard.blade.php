@@ -141,10 +141,9 @@
                     <h3 class="font-semibold text-gray-900 mb-1">My Campaigns</h3>
                     <p class="text-sm text-gray-600">View and manage all campaigns</p>
                 </a>
-                <a href="#" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition opacity-50">
-                    <h3 class="font-semibold text-gray-900 mb-1">Create Campaign</h3>
-                    <p class="text-sm text-gray-600">Start a new fundraising campaign</p>
-                    <span class="text-xs text-gray-500 mt-1 block">Coming in Checkpoint 8</span>
+                <a href="{{ route('creator.campaigns.create') }}" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition">
+                <h3 class="font-semibold text-gray-900 mb-1">Create Campaign</h3>
+                <p class="text-sm text-gray-600">Start a new fundraising campaign</p>
                 </a>
                 <a href="#" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition opacity-50">
                     <h3 class="font-semibold text-gray-900 mb-1">Analytics</h3>

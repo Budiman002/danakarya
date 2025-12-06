@@ -7,8 +7,8 @@
             <h2 class="text-2xl font-bold text-gray-900">My Campaigns</h2>
             <p class="text-sm text-gray-600 mt-1">Manage and track your campaigns</p>
         </div>
-        <a href="#" class="px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition opacity-50 cursor-not-allowed">
-            + Create New Campaign (Coming Soon)
+        <a href="{{ route('creator.campaigns.create') }}" class="px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
+        + Create New Campaign
         </a>
     </div>
 
@@ -142,8 +142,8 @@
                 </svg>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">No campaigns yet</h3>
                 <p class="text-gray-600 mb-6">Start your fundraising journey by creating your first campaign</p>
-                <a href="#" class="inline-block px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition opacity-50 cursor-not-allowed">
-                    Create Your First Campaign (Coming Soon)
+                <a href="{{ route('creator.campaigns.create') }}" class="inline-block px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
+                Create Your First Campaign
                 </a>
             </div>
         @endif
