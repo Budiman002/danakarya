@@ -8,17 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Donation extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'user_id',
-        'campaign_id',
-        'amount',
-        'payment_method',
-        'payment_proof',
-        'status',
-        'transaction_code',
-        'message',
-    ];
+    'user_id',
+    'campaign_id',
+    'amount',
+    'status',
+    'payment_method',
+    'transaction_code',
+    'message',
+    'snap_token',
+];
 
     protected $casts = [
         'amount' => 'decimal:2',

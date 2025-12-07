@@ -188,7 +188,7 @@
                     </div>
 
                     <!-- Donate Button -->
-                    <a href="#" class="block w-full px-6 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white text-center font-bold rounded-lg transition mb-4">
+                    <a href="{{ route('donations.create', $campaign->slug) }}" class="block w-full px-6 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white text-center font-bold rounded-lg transition mb-4">
                         Back This Project
                     </a>
 

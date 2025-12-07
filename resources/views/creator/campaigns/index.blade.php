@@ -118,9 +118,9 @@
                                     View Public Page
                                 </a>
                                 @if($campaign->status !== 'rejected')
-                                    <a href="#" class="flex-1 px-3 py-2 bg-gray-600 hover:bg-gray-700 text-white text-xs text-center font-semibold rounded transition opacity-50 cursor-not-allowed">
-                                        Edit (Soon)
-                                    </a>
+                                <a href="{{ route('creator.campaigns.edit', $campaign->id) }}" class="flex-1 px-3 py-2 bg-gray-600 hover:bg-gray-700 text-white text-xs text-center font-semibold rounded transition">
+                                    Edit
+                                </a>
                                 @endif
                             </div>
 

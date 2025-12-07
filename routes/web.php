@@ -88,6 +88,8 @@ Route::middleware(['auth', 'creator'])->prefix('creator')->name('creator.')->gro
     Route::get('/campaigns', [\App\Http\Controllers\Creator\CampaignController::class, 'index'])->name('campaigns.index');
     Route::get('/campaigns/create', [\App\Http\Controllers\Creator\CampaignController::class, 'create'])->name('campaigns.create');
     Route::post('/campaigns', [\App\Http\Controllers\Creator\CampaignController::class, 'store'])->name('campaigns.store');
+    Route::get('/campaigns/{id}/edit', [\App\Http\Controllers\Creator\CampaignController::class, 'edit'])->name('campaigns.edit');
+    Route::put('/campaigns/{id}', [\App\Http\Controllers\Creator\CampaignController::class, 'update'])->name('campaigns.update');
 });
 
 // Backer Routes
@@ -96,3 +98,13 @@ Route::middleware(['auth', 'backer'])->prefix('backer')->name('backer.')->group(
         return view('welcome', ['title' => 'Backer Dashboard']);
     })->name('dashboard');
 });
+
+// Donation Routes (authenticated users)
+Route::middleware('auth')->group(function () {
+    Route::get('/campaigns/{slug}/donate', [\App\Http\Controllers\DonationController::class, 'create'])->name('donations.create');
+    Route::post('/donations', [\App\Http\Controllers\DonationController::class, 'store'])->name('donations.store');
+    Route::get('/donations/{id}/success', [\App\Http\Controllers\DonationController::class, 'success'])->name('donations.success');
+});
+
+// Midtrans Webhook Route (public, di luar middleware)
+Route::post('/midtrans/notification', [\App\Http\Controllers\MidtransWebhookController::class, 'handle']);
