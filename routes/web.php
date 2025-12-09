@@ -95,6 +95,13 @@ Route::middleware(['auth', 'creator'])->prefix('creator')->name('creator.')->gro
     Route::post('/campaigns', [\App\Http\Controllers\Creator\CampaignController::class, 'store'])->name('campaigns.store');
     Route::get('/campaigns/{id}/edit', [\App\Http\Controllers\Creator\CampaignController::class, 'edit'])->name('campaigns.edit');
     Route::put('/campaigns/{id}', [\App\Http\Controllers\Creator\CampaignController::class, 'update'])->name('campaigns.update');
+
+    Route::get('/campaigns/{campaign}/updates', [\App\Http\Controllers\CampaignUpdateController::class, 'index'])->name('campaigns.updates.index');
+    Route::get('/campaigns/{campaign}/updates/create', [\App\Http\Controllers\CampaignUpdateController::class, 'create'])->name('campaigns.updates.create');
+    Route::post('/campaigns/{campaign}/updates', [\App\Http\Controllers\CampaignUpdateController::class, 'store'])->name('campaigns.updates.store');
+    Route::get('/campaigns/{campaign}/updates/{update}/edit', [\App\Http\Controllers\CampaignUpdateController::class, 'edit'])->name('campaigns.updates.edit');
+    Route::put('/campaigns/{campaign}/updates/{update}', [\App\Http\Controllers\CampaignUpdateController::class, 'update'])->name('campaigns.updates.update');
+    Route::delete('/campaigns/{campaign}/updates/{update}', [\App\Http\Controllers\CampaignUpdateController::class, 'destroy'])->name('campaigns.updates.destroy');
 });
 
 // Backer Routes

@@ -15,7 +15,7 @@ class CampaignController extends Controller
     {
         $query = Campaign::where('user_id', Auth::id())
             ->with('category')
-            ->withCount('donations');
+            ->withCount(['donations', 'updates']);
 
         if ($request->status) {
             $query->where('status', $request->status);

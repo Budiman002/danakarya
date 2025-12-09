@@ -49,7 +49,10 @@ class CampaignController extends Controller
 
     public function show($slug)
     {
-        $campaign = Campaign::with(['category', 'user', 'donations'])
+        $campaign = Campaign::with(['category', 'user', 'donations', 'updates' => function($query) {
+                $query->latest()->limit(10);
+            }])
+            ->withCount(['donations', 'updates'])
             ->where('slug', $slug)
             ->firstOrFail();
 

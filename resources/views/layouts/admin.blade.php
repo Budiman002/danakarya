@@ -74,7 +74,10 @@
                     </div>
                     
                     <!-- User Menu -->
-                    <div class="relative" x-data="{ open: false }">
+                    <div class="flex items-center gap-4">
+                        @include('components.language-switcher')
+
+                        <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
                             <div class="w-10 h-10 bg-[#7DD3C0] rounded-full flex items-center justify-center">
                                 <span class="text-white font-bold">{{ substr(Auth::user()->name, 0, 1) }}</span>
@@ -113,6 +116,7 @@
                                     Logout
                                 </button>
                             </form>
+                        </div>
                         </div>
                     </div>
                 </div>

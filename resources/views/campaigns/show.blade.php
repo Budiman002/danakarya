@@ -113,30 +113,104 @@
                 </div>
                 @endif
 
-                <!-- Recent Backers -->
-                @if($campaign->donations->count() > 0)
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">Recent Backers ({{ $campaign->donations->count() }})</h2>
-                    <div class="space-y-3">
-                        @foreach($campaign->donations->take(10) as $donation)
-                            <div class="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-[#7DD3C0] rounded-full flex items-center justify-center">
-                                        <span class="text-white font-bold">{{ substr($donation->user->name, 0, 1) }}</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-900">{{ $donation->user->name }}</p>
-                                        <p class="text-xs text-gray-500">{{ $donation->created_at->diffForHumans() }}</p>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <p class="font-bold text-[#2D7A67]">Rp {{ number_format($donation->amount, 0, ',', '.') }}</p>
-                                </div>
-                            </div>
-                        @endforeach
+                <!-- Campaign Updates -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ lightboxImage: null }">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold text-gray-900">{{ __('Campaign Updates') }} ({{ $campaign->updates_count }})</h2>
                     </div>
+
+                    @if($campaign->updates->count() > 0)
+                        <div class="space-y-6">
+                            @foreach($campaign->updates as $update)
+                                <div class="border-b border-gray-200 last:border-0 pb-6 last:pb-0">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-lg font-semibold text-gray-900">{{ $update->title }}</h3>
+                                        <span class="text-sm text-gray-500">{{ $update->created_at->diffForHumans() }}</span>
+                                    </div>
+
+                                    @if($update->image)
+                                        <img
+                                            src="{{ asset('storage/' . $update->image) }}"
+                                            alt="{{ $update->title }}"
+                                            class="w-full h-64 object-cover rounded-lg mb-3 cursor-pointer hover:opacity-90 transition"
+                                            @click="lightboxImage = '{{ asset('storage/' . $update->image) }}'"
+                                        >
+                                    @endif
+
+                                    <p class="text-gray-700 leading-relaxed whitespace-pre-line">{{ $update->content }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Lightbox Modal -->
+                        <div
+                            x-show="lightboxImage"
+                            x-transition
+                            @click="lightboxImage = null"
+                            class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+                            style="display: none;"
+                        >
+                            <div class="relative max-w-7xl max-h-full">
+                                <button
+                                    @click.stop="lightboxImage = null"
+                                    class="absolute -top-12 right-0 text-white hover:text-gray-300 text-4xl font-bold"
+                                >
+                                    &times;
+                                </button>
+                                <img
+                                    :src="lightboxImage"
+                                    class="max-w-full max-h-[90vh] object-contain rounded-lg"
+                                    @click.stop
+                                >
+                            </div>
+                        </div>
+                    @else
+                        <div class="text-center py-12">
+                            <svg class="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <h3 class="text-lg font-medium text-gray-900 mb-1">{{ __('No updates yet') }}</h3>
+                            <p class="text-gray-500">{{ __('The creator hasn\'t posted any updates for this campaign.') }}</p>
+                        </div>
+                    @endif
                 </div>
-                @endif
+
+                <!-- Recent Backers -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">{{ __('Recent Backers') }} ({{ $campaign->donations_count }})</h2>
+
+                    @if($campaign->donations->count() > 0)
+                        <div class="space-y-3">
+                            @foreach($campaign->donations->take(10) as $donation)
+                                <div class="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-[#7DD3C0] rounded-full flex items-center justify-center">
+                                            <span class="text-white font-bold">{{ substr($donation->user->name, 0, 1) }}</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-gray-900">{{ $donation->user->name }}</p>
+                                            <p class="text-xs text-gray-500">{{ $donation->created_at->diffForHumans() }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="font-bold text-[#2D7A67]">Rp {{ number_format($donation->amount, 0, ',', '.') }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="text-center py-12">
+                            <svg class="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                            <h3 class="text-lg font-medium text-gray-900 mb-1">{{ __('No backers yet') }}</h3>
+                            <p class="text-gray-500 mb-4">{{ __('Be the first to support this campaign!') }}</p>
+                            <a href="{{ route('donations.create', $campaign->slug) }}" class="inline-flex items-center px-6 py-3 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition">
+                                {{ __('Back This Project') }}
+                            </a>
+                        </div>
+                    @endif
+                </div>
             </div>
 
             <!-- Sidebar -->

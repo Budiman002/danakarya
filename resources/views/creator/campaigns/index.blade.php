@@ -124,6 +124,14 @@
                                 @endif
                             </div>
 
+                            @if($campaign->status === 'active')
+                            <div class="mt-2">
+                                <a href="{{ route('creator.campaigns.updates.index', $campaign) }}" class="block w-full px-3 py-2 bg-[#2D7A67] hover:bg-[#1A5647] text-white text-xs text-center font-semibold rounded transition">
+                                    📝 Manage Updates ({{ $campaign->updates_count ?? 0 }})
+                                </a>
+                            </div>
+                            @endif
+
                             <div class="mt-2 text-center">
                                 <p class="text-xs text-gray-500">Created {{ $campaign->created_at->diffForHumans() }}</p>
                             </div>
