@@ -135,4 +135,26 @@ class AuthController extends Controller
 
         return back()->with('success', 'Password changed successfully!');
     }
+
+    // Show Donation History
+    public function donationHistory()
+    {
+        $donations = Auth::user()
+            ->donations()
+            ->with('campaign')
+            ->latest()
+            ->get();
+
+        $stats = [
+            'total_donations' => $donations->count(),
+            'total_amount' => $donations->where('status', 'confirmed')->sum('amount'),
+            'pending_count' => $donations->where('status', 'pending')->count(),
+        ];
+
+        return view('profile.donation-history', [
+            'title' => 'Donation History',
+            'donations' => $donations,
+            'stats' => $stats,
+        ]);
+    }
 }

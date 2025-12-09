@@ -23,28 +23,29 @@
                 <!-- Navigation Links (Desktop) -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="/" class="text-gray-700 hover:text-[#2D7A67] transition font-medium {{ request()->is('/') ? 'text-[#2D7A67]' : '' }}">
-                        Home
+                        {{ __('Home') }}
                     </a>
                     <a href="/about" class="text-gray-700 hover:text-[#2D7A67] transition font-medium {{ request()->is('about') ? 'text-[#2D7A67]' : '' }}">
-                        About
+                        {{ __('About') }}
                     </a>
                     <a href="{{ route('campaigns.index') }}" class="text-gray-700 hover:text-[#2D7A67] transition font-medium {{ request()->is('campaigns*') ? 'text-[#2D7A67]' : '' }}">
-                        Donation List
+                        {{ __('Campaigns') }}
                     </a>
                     <a href="/contact" class="text-gray-700 hover:text-[#2D7A67] transition font-medium {{ request()->is('contact') ? 'text-[#2D7A67]' : '' }}">
-                        Contact Us
+                        {{ __('Contact Us') }}
                     </a>
                 </div>
 
                 <!-- Right Side: Auth Links -->
                 <div class="hidden md:flex items-center gap-4">
+                    @include('components.language-switcher')
+
                     @guest
-                        <!-- Not Logged In -->
                         <a href="{{ route('login') }}" class="text-gray-700 hover:text-[#2D7A67] transition font-medium">
-                            Sign In
+                            {{ __('Login') }}
                         </a>
                         <a href="{{ route('register') }}" class="px-6 py-2 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-md">
-                            Start Funding
+                            {{ __('Register') }}
                         </a>
                     @else
                         <!-- Logged In - User Dropdown -->
@@ -65,13 +66,13 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                                     </svg>
-                                    Dashboard
+                                    {{ __('Dashboard') }}
                                 </a>
                                 <a href="{{ route('profile') }}" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                     </svg>
-                                    My Profile
+                                    {{ __('Profile') }}
                                 </a>
                                 <hr class="my-2">
                                 <form method="POST" action="{{ route('logout') }}">
@@ -80,13 +81,13 @@
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                                         </svg>
-                                        Logout
+                                        {{ __('Logout') }}
                                     </button>
                                 </form>
                             </div>
                         </div>
                         <a href="{{ route('campaigns.index') }}" class="px-6 py-2 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-md">
-                            Browse Campaigns
+                            {{ __('Browse Campaigns') }}
                         </a>
                     @endguest
                 </div>
@@ -141,11 +142,11 @@
                 <div>
                     <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="/about" class="text-gray-200 hover:text-white transition text-sm">About Us</a></li>
-                        <li><a href="{{ route('campaigns.index') }}" class="text-gray-200 hover:text-white transition text-sm">Browse Campaigns</a></li>
-                        <li><a href="/contact" class="text-gray-200 hover:text-white transition text-sm">Contact Us</a></li>
-                        <li><a href="#" class="text-gray-200 hover:text-white transition text-sm">Terms and Conditions</a></li>
-                        <li><a href="#" class="text-gray-200 hover:text-white transition text-sm">Privacy Policy</a></li>
+                        <li><a href="/about" class="text-gray-200 hover:text-white transition text-sm">{{ __('About') }}</a></li>
+                        <li><a href="{{ route('campaigns.index') }}" class="text-gray-200 hover:text-white transition text-sm">{{ __('Browse Campaigns') }}</a></li>
+                        <li><a href="/contact" class="text-gray-200 hover:text-white transition text-sm">{{ __('Contact Us') }}</a></li>
+                        <li><a href="#" class="text-gray-200 hover:text-white transition text-sm">{{ __('Terms and Conditions') }}</a></li>
+                        <li><a href="#" class="text-gray-200 hover:text-white transition text-sm">{{ __('Privacy Policy') }}</a></li>
                     </ul>
                 </div>
 
@@ -177,7 +178,7 @@
 
             <!-- Copyright -->
             <div class="border-t border-white/20 mt-8 pt-8 text-center text-sm text-gray-200">
-                <p>Copyright &copy;2025 Danakarya. All Rights Reserved</p>
+                <p>Copyright &copy;2025 Danakarya. {{ __('All Rights Reserved') }}</p>
             </div>
         </div>
     </footer>

@@ -10,6 +10,13 @@ Route::get('/about', [PublicController::class, 'about'])->name('about');
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
 Route::post('/contact', [PublicController::class, 'submitContact'])->name('contact.submit');
 
+Route::get('/language/{locale}', function ($locale) {
+    if (in_array($locale, ['id', 'en'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('language.switch');
+
 Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
 Route::get('/campaigns/{slug}', [CampaignController::class, 'show'])->name('campaigns.show');
 
@@ -53,9 +60,7 @@ Route::middleware('auth')->group(function () {
         return view('profile.notifications', ['title' => 'Notifications']);
     })->name('notifications');
     
-    Route::get('/donation-history', function () {
-        return view('profile.donation-history', ['title' => 'Donation History']);
-    })->name('donation.history');
+    Route::get('/donation-history', [AuthController::class, 'donationHistory'])->name('donation.history');
 });
 
 // Admin Routes

@@ -4,9 +4,9 @@
 <!-- Hero Section -->
 <section class="relative bg-gradient-to-r from-[#2D7A67] to-[#1A5647] text-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ __('Get in Touch') }}</h1>
         <p class="text-xl text-gray-100">
-            Punya pertanyaan? Tim DanaKarya siap membantu Anda!
+            {{ __('Punya pertanyaan? Tim DanaKarya siap membantu Anda!') }}
         </p>
     </div>
 </section>
@@ -17,9 +17,9 @@
         <div class="grid lg:grid-cols-2 gap-12">
             <!-- Contact Info -->
             <div>
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ __('Contact Information') }}</h2>
                 <p class="text-gray-600 mb-8">
-                    Hubungi kami melalui channel di bawah ini atau isi form, dan kami akan merespons secepat mungkin.
+                    {{ __('Hubungi kami melalui channel di bawah ini atau isi form, dan kami akan merespons secepat mungkin.') }}
                 </p>
                 
                 <!-- Contact Cards -->
@@ -32,7 +32,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
+                            <h3 class="font-semibold text-gray-900 mb-1">{{ __('Email') }}</h3>
                             <a href="mailto:gmail@BUDI.com" class="text-[#2D7A67] hover:underline">gmail@BUDI.com</a>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
+                            <h3 class="font-semibold text-gray-900 mb-1">{{ __('Phone') }}</h3>
                             <a href="tel:+6285381008349" class="text-[#2D7A67] hover:underline">+62 853-8100-8349</a>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
         </svg>
     </div>
     <div>
-        <h3 class="font-semibold text-gray-900 mb-1">Address</h3>
+        <h3 class="font-semibold text-gray-900 mb-1">{{ __('Address') }}</h3>
         <p class="text-gray-600">
             Jl. Kebon Jeruk Raya No. 27<br>
             Jakarta Barat, DKI Jakarta 11530<br>
@@ -70,7 +70,7 @@
                 
             <!-- Social Media -->
         <div class="mt-8">
-            <h3 class="font-semibold text-gray-900 mb-4">Follow Us</h3>
+            <h3 class="font-semibold text-gray-900 mb-4">{{ __('Follow Us') }}</h3>
         <div class="flex gap-3">
         <!-- Facebook -->
         <a href="#" class="w-10 h-10 bg-[#2D7A67] hover:bg-[#1A5647] rounded-full flex items-center justify-center transition group">
@@ -93,7 +93,7 @@
             
             <!-- Contact Form -->
             <div class="bg-white rounded-2xl shadow-lg p-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">{{ __('Send Us a Message') }}</h2>
                 
                 <!-- Success Message -->
                 @if(session('success'))
@@ -108,7 +108,7 @@
                     <!-- Name -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-900 mb-2">
-                            Full Name <span class="text-red-500">*</span>
+                            {{ __('Full Name') }} <span class="text-red-500">*</span>
                         </label>
                         <input 
                             type="text" 
@@ -126,7 +126,7 @@
                     <!-- Email -->
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-900 mb-2">
-                            Email Address <span class="text-red-500">*</span>
+                            {{ __('Email Address') }} <span class="text-red-500">*</span>
                         </label>
                         <input 
                             type="email" 
@@ -144,7 +144,7 @@
                     <!-- Subject -->
                     <div>
                         <label for="subject" class="block text-sm font-medium text-gray-900 mb-2">
-                            Subject <span class="text-red-500">*</span>
+                            {{ __('Subject') }} <span class="text-red-500">*</span>
                         </label>
                         <input 
                             type="text" 
@@ -162,7 +162,7 @@
                     <!-- Message -->
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-900 mb-2">
-                            Message <span class="text-red-500">*</span>
+                            {{ __('Message') }} <span class="text-red-500">*</span>
                         </label>
                         <textarea 
                             id="message" 
@@ -177,11 +177,11 @@
                     </div>
                     
                     <!-- Submit Button -->
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         class="w-full px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg"
                     >
-                        Send Message
+                        {{ __('Send Message') }}
                     </button>
                 </form>
             </div>
@@ -192,16 +192,16 @@
 <!-- CTA Section -->
 <section class="py-16 bg-gradient-to-r from-[#2D7A67] to-[#1A5647] text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Can't Find Your Answer?</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">{{ __('Can\'t Find Your Answer?') }}</h2>
         <p class="text-xl text-gray-100 mb-8">
-            Tenang, tim DanaKarya siap membantu kamu! Hubungi kami langsung jika kamu tidak menemukan jawaban yang kamu cari.
+            {{ __('Tenang, tim DanaKarya siap membantu kamu! Hubungi kami langsung jika kamu tidak menemukan jawaban yang kamu cari.') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="mailto:gmail@BUDI.com" class="px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg">
-                Email Us
+                {{ __('Email Us') }}
             </a>
             <a href="tel:+6285381008349" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg transition border-2 border-white/30">
-                Call Us
+                {{ __('Call Us') }}
             </a>
         </div>
     </div>

@@ -12,24 +12,23 @@
             <!-- Left: Text Content -->
             <div>
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                    Wujudkan Impian<br>
-                    <span class="text-[#F5A623]">UMKM Indonesia</span>
+                    {{ __('Wujudkan Impian') }}<br>
+                    <span class="text-[#F5A623]">{{ __('UMKM Indonesia') }}</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
-                    Platform crowdfunding terpercaya untuk membantu UMKM Indonesia berkembang. 
-                    Mari bersama membangun masa depan yang lebih cerah.
+                    {{ __('Platform crowdfunding terpercaya untuk membantu UMKM Indonesia berkembang. Mari bersama membangun masa depan yang lebih cerah.') }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     @guest
                         <a href="{{ route('register') }}" class="px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg text-center">
-                            Start Funding
+                            {{ __('Start Funding') }}
                         </a>
                         <a href="{{ route('campaigns.index') }}" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg transition border-2 border-white/30 text-center">
-                            Browse Campaigns
+                            {{ __('Browse Campaigns') }}
                         </a>
                     @else
                         <a href="{{ route('campaigns.index') }}" class="px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg text-center">
-                            Browse Campaigns
+                            {{ __('Browse Campaigns') }}
                         </a>
                     @endguest
                 </div>
@@ -58,9 +57,9 @@
                     </svg>
                 </div>
                 <p class="text-3xl font-bold text-white mb-1">{{ $totalCampaigns }}</p>
-                <p class="text-sm text-white/90">Campaigns</p>
+                <p class="text-sm text-white/90">{{ __('Campaigns') }}</p>
             </div>
-            
+
             <!-- Projects Funded -->
             <div class="text-center">
                 <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -69,9 +68,9 @@
                     </svg>
                 </div>
                 <p class="text-3xl font-bold text-white mb-1">{{ $fundedCampaigns }}</p>
-                <p class="text-sm text-white/90">Projects Funded</p>
+                <p class="text-sm text-white/90">{{ __('Projects Funded') }}</p>
             </div>
-            
+
             <!-- Total Backers -->
             <div class="text-center">
                 <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -80,9 +79,9 @@
                     </svg>
                 </div>
                 <p class="text-3xl font-bold text-white mb-1">{{ $totalDonations }}</p>
-                <p class="text-sm text-white/90">Backers</p>
+                <p class="text-sm text-white/90">{{ __('Backers') }}</p>
             </div>
-            
+
             <!-- Total Raised -->
             <div class="text-center">
                 <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -91,7 +90,7 @@
                     </svg>
                 </div>
                 <p class="text-3xl font-bold text-white mb-1">Rp {{ number_format($totalRaised / 1000000, 0) }}M</p>
-                <p class="text-sm text-white/90">Total Raised</p>
+                <p class="text-sm text-white/90">{{ __('Funds Raised') }}</p>
             </div>
         </div>
     </div>
@@ -101,43 +100,43 @@
 <section class="py-16 md:py-24 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('How It Works') }}</h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Memulai campaign atau mendukung UMKM hanya dalam beberapa langkah mudah
+                {{ __('Memulai campaign atau mendukung UMKM hanya dalam beberapa langkah mudah') }}
             </p>
         </div>
-        
+
         <div class="grid md:grid-cols-3 gap-8">
             <!-- Step 1 -->
             <div class="text-center group">
                 <div class="w-20 h-20 bg-[#2D7A67] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
                     <span class="text-3xl font-bold text-white">1</span>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Create Campaign</h3>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">{{ __('Create Campaign') }}</h3>
                 <p class="text-gray-600">
-                    Daftarkan UMKM Anda dan buat campaign dengan detail lengkap tentang bisnis dan kebutuhan dana
+                    {{ __('Daftarkan UMKM Anda dan buat campaign dengan detail lengkap tentang bisnis dan kebutuhan dana') }}
                 </p>
             </div>
-            
+
             <!-- Step 2 -->
             <div class="text-center group">
                 <div class="w-20 h-20 bg-[#2D7A67] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
                     <span class="text-3xl font-bold text-white">2</span>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Get Support</h3>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">{{ __('Get Support') }}</h3>
                 <p class="text-gray-600">
-                    Bagikan campaign Anda dan dapatkan dukungan dari backers yang peduli terhadap perkembangan UMKM
+                    {{ __('Bagikan campaign Anda dan dapatkan dukungan dari backers yang peduli terhadap perkembangan UMKM') }}
                 </p>
             </div>
-            
+
             <!-- Step 3 -->
             <div class="text-center group">
                 <div class="w-20 h-20 bg-[#2D7A67] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
                     <span class="text-3xl font-bold text-white">3</span>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Reach Your Goal</h3>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">{{ __('Reach Your Goal') }}</h3>
                 <p class="text-gray-600">
-                    Capai target pendanaan dan wujudkan impian untuk mengembangkan bisnis UMKM Anda
+                    {{ __('Capai target pendanaan dan wujudkan impian untuk mengembangkan bisnis UMKM Anda') }}
                 </p>
             </div>
         </div>
@@ -149,11 +148,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-end mb-12">
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Ongoing Campaigns</h2>
-                <p class="text-lg text-gray-600">Dukung UMKM Indonesia untuk mewujudkan impian mereka</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('Ongoing Campaigns') }}</h2>
+                <p class="text-lg text-gray-600">{{ __('Dukung UMKM Indonesia untuk mewujudkan impian mereka') }}</p>
             </div>
             <a href="{{ route('campaigns.index') }}" class="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
-                View All
+                {{ __('View All') }}
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                 </svg>
@@ -213,13 +212,13 @@
                             </div>
                             <div class="text-right">
                                 <p class="text-lg font-bold text-gray-900">{{ $campaign->donations_count }}</p>
-                                <p class="text-xs text-gray-600">Backers</p>
+                                <p class="text-xs text-gray-600">{{ __('Backers') }}</p>
                             </div>
                         </div>
-                        
+
                         <!-- Donate Button -->
                         <a href="{{ route('campaigns.show', $campaign->slug) }}" class="block w-full px-4 py-3 bg-[#F5A623] hover:bg-[#E09612] text-white text-center font-semibold rounded-lg transition">
-                            Donate Now
+                            {{ __('Donate Now') }}
                         </a>
                     </div>
                 </div>
@@ -228,14 +227,14 @@
                     <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
                     </svg>
-                    <p class="text-gray-600 text-lg">No campaigns available yet</p>
+                    <p class="text-gray-600 text-lg">{{ __('No campaigns available yet') }}</p>
                 </div>
             @endforelse
         </div>
-        
+
         <div class="text-center mt-12 md:hidden">
             <a href="{{ route('campaigns.index') }}" class="inline-flex items-center gap-2 px-8 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
-                View All Campaigns
+                {{ __('View All Campaigns') }}
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                 </svg>
@@ -248,8 +247,8 @@
 <section class="py-16 md:py-24 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Browse by Category</h2>
-            <p class="text-lg text-gray-600">Temukan campaign sesuai minat dan passion Anda</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('Browse by Category') }}</h2>
+            <p class="text-lg text-gray-600">{{ __('Temukan campaign sesuai minat dan passion Anda') }}</p>
         </div>
         
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -275,21 +274,18 @@
                 <div class="absolute inset-0 bg-[#F5A623] rounded-full blur-3xl opacity-20"></div>
                 <img src="{{ asset('images/AuthBackground.png') }}" alt="About DanaKarya" class="relative rounded-2xl shadow-2xl">
             </div>
-            
+
             <!-- Content -->
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">About DanaKarya</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ __('About DanaKarya') }}</h2>
                 <p class="text-lg text-gray-100 mb-6 leading-relaxed">
-                    DanaKarya adalah platform crowdfunding yang didedikasikan untuk membantu UMKM Indonesia 
-                    berkembang dan mewujudkan impian mereka. Kami percaya bahwa setiap bisnis kecil memiliki 
-                    potensi besar untuk membawa perubahan positif.
+                    {{ __('DanaKarya adalah platform crowdfunding yang didedikasikan untuk membantu UMKM Indonesia berkembang dan mewujudkan impian mereka. Kami percaya bahwa setiap bisnis kecil memiliki potensi besar untuk membawa perubahan positif.') }}
                 </p>
                 <p class="text-lg text-gray-100 mb-8 leading-relaxed">
-                    Dengan dukungan dari komunitas backers yang peduli, kami telah membantu ratusan UMKM 
-                    mendapatkan pendanaan yang mereka butuhkan untuk tumbuh dan berkembang.
+                    {{ __('Dengan dukungan dari komunitas backers yang peduli, kami telah membantu ratusan UMKM mendapatkan pendanaan yang mereka butuhkan untuk tumbuh dan berkembang.') }}
                 </p>
                 <a href="/about" class="inline-flex items-center gap-2 px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition">
-                    Learn More
+                    {{ __('Learn More') }}
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                     </svg>
@@ -302,21 +298,21 @@
 <!-- CTA Section -->
 <section class="py-16 md:py-24 bg-gradient-to-r from-[#2D7A67] to-[#1A5647] text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Campaign?</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">{{ __('Ready to Start Your Campaign?') }}</h2>
         <p class="text-xl text-gray-100 mb-8 max-w-2xl mx-auto">
-            Wujudkan impian bisnis Anda bersama komunitas DanaKarya. Daftarkan campaign Anda sekarang dan mulai mendapatkan dukungan.
+            {{ __('Wujudkan impian bisnis Anda bersama komunitas DanaKarya. Daftarkan campaign Anda sekarang dan mulai mendapatkan dukungan.') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             @guest
                 <a href="{{ route('register') }}" class="px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg">
-                    Get Started Now
+                    {{ __('Get Started Now') }}
                 </a>
                 <a href="/contact" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg transition border-2 border-white/30">
-                    Contact Us
+                    {{ __('Contact Us') }}
                 </a>
             @else
                 <a href="{{ route('campaigns.index') }}" class="px-8 py-4 bg-[#F5A623] hover:bg-[#E09612] text-white font-semibold rounded-lg transition shadow-lg">
-                    Browse Campaigns
+                    {{ __('Browse Campaigns') }}
                 </a>
             @endguest
         </div>

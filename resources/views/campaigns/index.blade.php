@@ -4,8 +4,8 @@
 <!-- Page Header -->
 <section class="bg-gradient-to-r from-[#2D7A67] to-[#1A5647] text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl md:text-4xl font-bold mb-4">Browse Campaigns</h1>
-        <p class="text-lg text-gray-100">Dukung UMKM Indonesia untuk mewujudkan impian mereka</p>
+        <h1 class="text-3xl md:text-4xl font-bold mb-4">{{ __('Browse Campaigns') }}</h1>
+        <p class="text-lg text-gray-100">{{ __('Support Indonesian MSMEs to realize their dreams') }}</p>
     </div>
 </section>
 
@@ -18,7 +18,7 @@
                 <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
                     <!-- Search -->
                     <div class="mb-6">
-                        <h3 class="font-semibold text-gray-900 mb-3">Search</h3>
+                        <h3 class="font-semibold text-gray-900 mb-3">{{ __('Search') }}</h3>
                         <form method="GET" action="{{ route('campaigns.index') }}">
                             @if(request('category'))
                                 <input type="hidden" name="category" value="{{ request('category') }}">
@@ -26,13 +26,13 @@
                             @if(request('sort'))
                                 <input type="hidden" name="sort" value="{{ request('sort') }}">
                             @endif
-                            
+
                             <div class="relative">
-                                <input 
-                                    type="text" 
-                                    name="search" 
+                                <input
+                                    type="text"
+                                    name="search"
                                     value="{{ request('search') }}"
-                                    placeholder="Search campaigns..."
+                                    placeholder="{{ __('Search campaigns...') }}"
                                     class="w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
                                 >
                                 <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2D7A67]">
@@ -46,7 +46,7 @@
 
                     <!-- Sort -->
                     <div class="mb-6">
-                        <h3 class="font-semibold text-gray-900 mb-3">Sort By</h3>
+                        <h3 class="font-semibold text-gray-900 mb-3">{{ __('Sort By') }}</h3>
                         <form method="GET" action="{{ route('campaigns.index') }}" id="sortForm">
                             @if(request('category'))
                                 <input type="hidden" name="category" value="{{ request('category') }}">
@@ -54,26 +54,26 @@
                             @if(request('search'))
                                 <input type="hidden" name="search" value="{{ request('search') }}">
                             @endif
-                            
-                            <select 
-                                name="sort" 
+
+                            <select
+                                name="sort"
                                 onchange="document.getElementById('sortForm').submit()"
                                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#2D7A67] focus:border-transparent"
                             >
-                                <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
-                                <option value="popular" {{ request('sort') == 'popular' ? 'selected' : '' }}>Most Popular</option>
-                                <option value="ending" {{ request('sort') == 'ending' ? 'selected' : '' }}>Ending Soon</option>
+                                <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>{{ __('Newest') }}</option>
+                                <option value="popular" {{ request('sort') == 'popular' ? 'selected' : '' }}>{{ __('Most Popular') }}</option>
+                                <option value="ending" {{ request('sort') == 'ending' ? 'selected' : '' }}>{{ __('Ending Soon') }}</option>
                             </select>
                         </form>
                     </div>
 
                     <!-- Categories Filter -->
                     <div>
-                        <h3 class="font-semibold text-gray-900 mb-3">Categories</h3>
+                        <h3 class="font-semibold text-gray-900 mb-3">{{ __('Categories') }}</h3>
                         <div class="space-y-2">
-                            <a href="{{ route('campaigns.index', array_merge(request()->except('category'), request()->only(['search', 'sort']))) }}" 
+                            <a href="{{ route('campaigns.index', array_merge(request()->except('category'), request()->only(['search', 'sort']))) }}"
                                class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 transition {{ !request('category') ? 'bg-[#2D7A67] text-white hover:bg-[#1A5647]' : 'text-gray-700' }}">
-                                <span>All Categories</span>
+                                <span>{{ __('All Categories') }}</span>
                                 <span class="text-sm {{ !request('category') ? 'text-white' : 'text-gray-500' }}">{{ $campaigns->total() }}</span>
                             </a>
     
@@ -93,7 +93,7 @@
                     @if(request('category') || request('search') || request('sort'))
                         <div class="mt-6 pt-6 border-t border-gray-200">
                             <a href="{{ route('campaigns.index') }}" class="block w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-center font-semibold rounded-lg transition">
-                                Clear All Filters
+                                {{ __('Clear All Filters') }}
                             </a>
                         </div>
                     @endif
@@ -104,8 +104,8 @@
             <main class="flex-1">
                 <div class="flex justify-between items-center mb-6">
                     <p class="text-gray-600">
-                        Showing <span class="font-semibold">{{ $campaigns->firstItem() ?? 0 }}-{{ $campaigns->lastItem() ?? 0 }}</span> 
-                        of <span class="font-semibold">{{ $campaigns->total() }}</span> campaigns
+                        {{ __('Showing') }} <span class="font-semibold">{{ $campaigns->firstItem() ?? 0 }}-{{ $campaigns->lastItem() ?? 0 }}</span>
+                        {{ __('of') }} <span class="font-semibold">{{ $campaigns->total() }}</span> {{ __('campaigns') }}
                     </p>
                 </div>
 
@@ -158,12 +158,12 @@
                                         </div>
                                         <div class="text-right">
                                             <p class="text-lg font-bold text-gray-900">{{ $campaign->donations_count }}</p>
-                                            <p class="text-xs text-gray-600">Backers</p>
+                                            <p class="text-xs text-gray-600">{{ __('Backers') }}</p>
                                         </div>
                                     </div>
-                                    
+
                                     <a href="{{ route('campaigns.show', $campaign->slug) }}" class="block w-full px-4 py-3 bg-[#F5A623] hover:bg-[#E09612] text-white text-center font-semibold rounded-lg transition">
-                                        View Campaign
+                                        {{ __('View Campaign') }}
                                     </a>
                                 </div>
                             </div>
@@ -178,10 +178,10 @@
                         <svg class="w-24 h-24 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">No campaigns found</h3>
-                        <p class="text-gray-600 mb-6">Try adjusting your search or filters to find what you're looking for.</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">{{ __('No campaigns found') }}</h3>
+                        <p class="text-gray-600 mb-6">{{ __('Try adjusting your search or filters to find what you\'re looking for.') }}</p>
                         <a href="{{ route('campaigns.index') }}" class="inline-block px-6 py-3 bg-[#2D7A67] hover:bg-[#1A5647] text-white font-semibold rounded-lg transition">
-                            Clear Filters
+                            {{ __('Clear Filters') }}
                         </a>
                     </div>
                 @endif
