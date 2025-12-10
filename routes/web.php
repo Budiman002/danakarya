@@ -89,6 +89,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
+
+    Route::get('disbursements', [\App\Http\Controllers\Admin\DisbursementController::class, 'index'])->name('disbursements.index');
+    Route::get('disbursements/{id}', [\App\Http\Controllers\Admin\DisbursementController::class, 'show'])->name('disbursements.show');
+    Route::post('disbursements/{id}/approve', [\App\Http\Controllers\Admin\DisbursementController::class, 'approve'])->name('disbursements.approve');
+    Route::post('disbursements/{id}/reject', [\App\Http\Controllers\Admin\DisbursementController::class, 'reject'])->name('disbursements.reject');
 });
 
 // Creator Routes
@@ -108,6 +113,10 @@ Route::middleware(['auth', 'creator'])->prefix('creator')->name('creator.')->gro
     Route::delete('/campaigns/{campaign}/updates/{update}', [\App\Http\Controllers\CampaignUpdateController::class, 'destroy'])->name('campaigns.updates.destroy');
 
     Route::get('/analytics', [\App\Http\Controllers\Creator\AnalyticsController::class, 'index'])->name('analytics');
+
+    Route::get('/disbursements', [\App\Http\Controllers\Creator\DisbursementController::class, 'index'])->name('disbursements.index');
+    Route::get('/disbursements/{campaignId}/create', [\App\Http\Controllers\Creator\DisbursementController::class, 'create'])->name('disbursements.create');
+    Route::post('/disbursements/{campaignId}', [\App\Http\Controllers\Creator\DisbursementController::class, 'store'])->name('disbursements.store');
 });
 
 // Backer Routes

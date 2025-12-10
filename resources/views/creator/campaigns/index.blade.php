@@ -132,6 +132,25 @@
                             </div>
                             @endif
 
+                            @if($campaign->status === 'funded' && $campaign->current_amount >= $campaign->target_amount)
+                                @php
+                                    $hasPendingWithdrawal = \App\Models\Disbursement::where('campaign_id', $campaign->id)
+                                        ->where('status', 'pending')
+                                        ->exists();
+                                @endphp
+                                <div class="mt-2">
+                                    @if($hasPendingWithdrawal)
+                                        <button class="block w-full px-3 py-2 bg-gray-400 text-white text-xs text-center font-semibold rounded cursor-not-allowed" disabled>
+                                            ⏳ Withdrawal Pending
+                                        </button>
+                                    @else
+                                        <a href="{{ route('creator.disbursements.create', $campaign->id) }}" class="block w-full px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs text-center font-semibold rounded transition">
+                                            💰 Request Withdrawal
+                                        </a>
+                                    @endif
+                                </div>
+                            @endif
+
                             <div class="mt-2 text-center">
                                 <p class="text-xs text-gray-500">Created {{ $campaign->created_at->diffForHumans() }}</p>
                             </div>
