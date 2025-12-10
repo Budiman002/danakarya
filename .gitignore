@@ -24,4 +24,33 @@ Homestead.yaml
 Thumbs.db
 npm-debug.log
 yarn-error.log
-README.md
+
+# Laravel cache files
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
+
+# Storage directories (keep structure, ignore contents)
+/storage/app/*
+!/storage/app/.gitkeep
+!/storage/app/public
+/storage/app/public/*
+!/storage/app/public/.gitkeep
+/storage/framework/cache/*
+!/storage/framework/cache/.gitkeep
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/testing/*
+!/storage/framework/testing/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# Ignore SQLite database (if using)
+/database/*.sqlite
+/database/*.sqlite-journal
+
+# Ignore compiled assets
+/public/css/app.css
+/public/js/app.js
+mix-manifest.json
