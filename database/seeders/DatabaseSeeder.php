@@ -2,25 +2,44 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create Admin
+        User::create([
+            'name' => 'Admin DanaKarya',
+            'email' => 'admin@danakarya.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
+        ]);
 
-$this->call([
-        CategorySeeder::class,
-        UserSeeder::class,
-        CampaignSeeder::class,
-    ]);
+        // Create Test Creator
+        User::create([
+            'name' => 'John Creator',
+            'email' => 'creator@danakarya.com',
+            'password' => Hash::make('password'),
+            'role' => 'creator',
+        ]);
+
+        // Create Test Backer
+        User::create([
+            'name' => 'Jane Backer',
+            'email' => 'backer@danakarya.com',
+            'password' => Hash::make('password'),
+            'role' => 'backer',
+        ]);
+
+        // Create Categories
+        Category::create(['name' => 'Technology', 'description' => 'Tech projects']);
+        Category::create(['name' => 'Education', 'description' => 'Educational projects']);
+        Category::create(['name' => 'Health', 'description' => 'Healthcare projects']);
+        Category::create(['name' => 'Environment', 'description' => 'Environmental projects']);
+        Category::create(['name' => 'Social', 'description' => 'Social impact projects']);
     }
 }
