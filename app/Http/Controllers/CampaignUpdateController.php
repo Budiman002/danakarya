@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\CampaignUpdate;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -39,7 +40,19 @@ class CampaignUpdateController extends Controller
             $validated['image'] = $request->file('image')->store('campaign-updates', 'public');
         }
 
-        $campaign->updates()->create($validated);
+        $update = $campaign->updates()->create($validated);
+
+        $backers = $campaign->donations()
+            ->with('user')
+            ->where('status', 'confirmed')
+            ->get()
+            ->pluck('user')
+            ->unique('id')
+            ->toArray();
+
+        if (count($backers) > 0) {
+            NotificationService::campaignUpdate($update, $backers);
+        }
 
         return redirect()->route('creator.campaigns.updates.index', $campaign)
             ->with('success', __('Update posted successfully!'));

@@ -40,6 +40,10 @@
                 <div class="hidden md:flex items-center gap-4">
                     @include('components.language-switcher')
 
+                    @auth
+                    @include('components.notification-dropdown')
+                    @endauth
+
                     @guest
                         <a href="{{ route('login') }}" class="text-gray-700 hover:text-[#2D7A67] transition font-medium">
                             {{ __('Login') }}

@@ -39,12 +39,11 @@
                         <span>Create Campaign</span>
                     </a>
                     
-                    <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition opacity-50 cursor-not-allowed">
+                    <a href="{{ route('creator.analytics') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition {{ request()->routeIs('creator.analytics') ? 'bg-white/20' : '' }}">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                         </svg>
                         <span>Analytics</span>
-                        <span class="ml-auto text-xs bg-white/20 px-2 py-1 rounded">Soon</span>
                     </a>
                     
                     <div class="pt-4 mt-4 border-t border-white/20">
@@ -69,6 +68,10 @@
 
                     <div class="flex items-center gap-4">
                         @include('components.language-switcher')
+
+                        @auth
+                        @include('components.notification-dropdown')
+                        @endauth
 
                         <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 transition">

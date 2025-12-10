@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Category;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -126,26 +127,32 @@ public function index(Request $request)
 
     public function approve($id)
     {
-        $campaign = Campaign::findOrFail($id);
-        
+        $campaign = Campaign::with('user')->findOrFail($id);
+
         if ($campaign->status !== 'pending') {
             return back()->with('error', 'Only pending campaigns can be approved.');
         }
 
         $campaign->update(['status' => 'active']);
 
+        NotificationService::campaignApproved($campaign);
+
         return back()->with('success', "Campaign '{$campaign->title}' has been approved!");
     }
 
-    public function reject($id)
+    public function reject(Request $request, $id)
     {
-        $campaign = Campaign::findOrFail($id);
-        
+        $campaign = Campaign::with('user')->findOrFail($id);
+
         if ($campaign->status !== 'pending') {
             return back()->with('error', 'Only pending campaigns can be rejected.');
         }
 
+        $reason = $request->input('reason', 'The campaign does not meet our guidelines.');
+
         $campaign->update(['status' => 'rejected']);
+
+        NotificationService::campaignRejected($campaign, $reason);
 
         return back()->with('success', "Campaign '{$campaign->title}' has been rejected.");
     }

@@ -32,6 +32,10 @@
                 <div class="hidden md:flex items-center gap-4">
                     @include('components.language-switcher')
 
+                    @auth
+                    @include('components.notification-dropdown')
+                    @endauth
+
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/20 transition">
                             <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">

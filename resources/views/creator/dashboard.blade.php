@@ -65,6 +65,20 @@
         </div>
     </div>
 
+    <!-- Analytics Preview Section -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold text-gray-900">Analytics Overview</h2>
+            <a href="{{ route('creator.analytics') }}" class="text-[#2D7A67] hover:text-[#1A5647] font-semibold text-sm">
+                View All Analytics →
+            </a>
+        </div>
+        <div class="h-64">
+            <canvas id="dashboardDonationChart"></canvas>
+        </div>
+        <p class="text-xs text-gray-500 text-center mt-4">Last 7 days donation trends</p>
+    </div>
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="lg:col-span-2 bg-white rounded-lg shadow p-6">
             <div class="flex items-center justify-between mb-6">
@@ -145,13 +159,60 @@
                 <h3 class="font-semibold text-gray-900 mb-1">Create Campaign</h3>
                 <p class="text-sm text-gray-600">Start a new fundraising campaign</p>
                 </a>
-                <a href="#" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition opacity-50">
+                <a href="{{ route('creator.analytics') }}" class="block p-4 border-2 border-gray-200 rounded-lg hover:border-[#2D7A67] transition">
                     <h3 class="font-semibold text-gray-900 mb-1">Analytics</h3>
                     <p class="text-sm text-gray-600">View detailed campaign analytics</p>
-                    <span class="text-xs text-gray-500 mt-1 block">Coming soon</span>
                 </a>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Chart.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Dashboard Donation Chart (7 days preview)
+    const ctx = document.getElementById('dashboardDonationChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {!! $trendLabels !!},
+            datasets: [{
+                label: 'Daily Donations (Rp)',
+                data: {!! $trendData !!},
+                borderColor: 'rgb(45, 122, 103)',
+                backgroundColor: 'rgba(45, 122, 103, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return 'Rp ' + context.parsed.y.toLocaleString('id-ID');
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return 'Rp ' + value.toLocaleString('id-ID');
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
 @endsection

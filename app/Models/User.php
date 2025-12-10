@@ -63,6 +63,12 @@ class User extends Authenticatable
         return $this->hasMany(Donation::class);
     }
 
+    // Relationship: User has many Notifications
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
     // Helper: Check if user is admin
     public function isAdmin()
     {

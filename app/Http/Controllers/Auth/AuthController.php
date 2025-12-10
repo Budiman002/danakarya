@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,6 +36,8 @@ class AuthController extends Controller
             'phone' => $validated['phone'],
             'role' => $validated['role'],
         ]);
+
+        NotificationService::welcome($user);
 
         Auth::login($user);
 

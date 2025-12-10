@@ -56,10 +56,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', [AuthController::class, 'showSettings'])->name('settings');
     Route::put('/settings/password', [AuthController::class, 'changePassword'])->name('password.change');
     
-    Route::get('/notifications', function () {
-        return view('profile.notifications', ['title' => 'Notifications']);
-    })->name('notifications');
-    
+    Route::get('/notifications', [\App\Http\Controllers\NotificationController::class, 'index'])->name('notifications');
+    Route::post('/notifications/{id}/read', [\App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::post('/notifications/read-all', [\App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
+    Route::get('/notifications/unread-count', [\App\Http\Controllers\NotificationController::class, 'unreadCount'])->name('notifications.unread-count');
+
     Route::get('/donation-history', [AuthController::class, 'donationHistory'])->name('donation.history');
 });
 
@@ -85,6 +86,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('campaigns', \App\Http\Controllers\Admin\CampaignController::class)->except(['create', 'store']);
     Route::post('campaigns/{id}/approve', [\App\Http\Controllers\Admin\CampaignController::class, 'approve'])->name('campaigns.approve');
     Route::post('campaigns/{id}/reject', [\App\Http\Controllers\Admin\CampaignController::class, 'reject'])->name('campaigns.reject');
+
+    Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    Route::get('users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
 });
 
 // Creator Routes
@@ -102,6 +106,8 @@ Route::middleware(['auth', 'creator'])->prefix('creator')->name('creator.')->gro
     Route::get('/campaigns/{campaign}/updates/{update}/edit', [\App\Http\Controllers\CampaignUpdateController::class, 'edit'])->name('campaigns.updates.edit');
     Route::put('/campaigns/{campaign}/updates/{update}', [\App\Http\Controllers\CampaignUpdateController::class, 'update'])->name('campaigns.updates.update');
     Route::delete('/campaigns/{campaign}/updates/{update}', [\App\Http\Controllers\CampaignUpdateController::class, 'destroy'])->name('campaigns.updates.destroy');
+
+    Route::get('/analytics', [\App\Http\Controllers\Creator\AnalyticsController::class, 'index'])->name('analytics');
 });
 
 // Backer Routes

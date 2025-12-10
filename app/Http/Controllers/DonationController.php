@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Donation;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Midtrans\Config;
@@ -64,6 +65,11 @@ class DonationController extends Controller
         if ($campaign->current_amount >= $campaign->target_amount) {
             $campaign->update(['status' => 'funded']);
         }
+
+        $donation->load(['campaign.user', 'user']);
+
+        NotificationService::newDonation($donation);
+        NotificationService::donationSuccess($donation);
 
         return response()->json([
             'success' => true,
