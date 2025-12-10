@@ -15,31 +15,39 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Admin DanaKarya',
             'email' => 'admin@danakarya.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('password123'),
             'role' => 'admin',
         ]);
 
         // Create Test Creator
         User::create([
-            'name' => 'John Creator',
+            'name' => 'Budi Santoso',
             'email' => 'creator@danakarya.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('password123'),
             'role' => 'creator',
         ]);
 
         // Create Test Backer
         User::create([
-            'name' => 'Jane Backer',
+            'name' => 'Ibu Siti',
             'email' => 'backer@danakarya.com',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('password123'),
             'role' => 'backer',
         ]);
 
         // Create Categories
-        Category::create(['name' => 'Technology', 'description' => 'Tech projects']);
-        Category::create(['name' => 'Education', 'description' => 'Educational projects']);
-        Category::create(['name' => 'Health', 'description' => 'Healthcare projects']);
-        Category::create(['name' => 'Environment', 'description' => 'Environmental projects']);
-        Category::create(['name' => 'Social', 'description' => 'Social impact projects']);
+        $categories = [
+            ['name' => 'Technology', 'description' => 'Tech and innovation projects'],
+            ['name' => 'Education', 'description' => 'Educational initiatives'],
+            ['name' => 'Health', 'description' => 'Healthcare and wellness'],
+            ['name' => 'Environment', 'description' => 'Environmental conservation'],
+            ['name' => 'Social', 'description' => 'Social impact projects'],
+            ['name' => 'Arts', 'description' => 'Creative and artistic projects'],
+            ['name' => 'Business', 'description' => 'Small business and entrepreneurship'],
+        ];
+
+        foreach ($categories as $category) {
+            Category::create($category);
+        }
     }
 }
